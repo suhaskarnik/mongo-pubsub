@@ -2,7 +2,7 @@ Use Mongo DB to implement a simple pubsub architecture using a Python CLI app.
 
 ## Structure
 
-`main.py` is the entry point
+`cli.py` is the entry point
 
 
 
@@ -34,25 +34,25 @@ docker run --name mongodb -p 27017:27017 -d mongodb/mongodb-community-server:lat
 mongosh --port 27017
 ```
 
-Populate the MONGO_URL variable in the `.env` file 
+Populate the MONGO_URL variable in the `.env` file. You can also manually copy-paste the URL that the `mongosh` command above printed
 ```bash
 echo "MONGO_URL=$(mongosh --eval "db.getMongo()")" > .env
 ```
 
 Then initialise the database. It generates a log file in `/tmp/` with a randomised name (which is also printed to the output)
 ```bash
-python main.py init
+python cli.py init
 ```
 
-NOTE: for all of the subcommands of `main.py`, you can add the `--help` arg to get usage instructions. All options have sane defaults, so you can run the subcommand even without providing them. 
+NOTE: for all of the subcommands of `cli.py`, you can add the `--help` arg to get usage instructions. All options have sane defaults, so you can run the subcommand even without providing them. 
 
 Now create two terminal sessions, one for pub and one for sub.  
 Publisher:
 ```bash
-python main.py pub
+python cli.py pub
 ```
 
 Subscriber:
 ```bash
-python main.py sub
+python cli.py sub
 ```
